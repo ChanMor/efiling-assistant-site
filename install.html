@@ -59,12 +59,12 @@
       </div>
       <ol class="steps-ol">
         <li>Open the <strong>.dmg</strong> and drag <strong>eFiling Assistant</strong> into <strong>Applications</strong>.</li>
-        <li>Open it once from Applications. macOS will block it (unidentified developer) — normal for a small independent app, and a <strong>one-time</strong> step.</li>
-        <li>Go to <strong>System Settings → Privacy &amp; Security</strong>, scroll to the bottom, and click <strong>"Open Anyway"</strong>, then confirm. It opens and stays trusted afterward.</li>
+        <li>Open it once from Applications, then click <strong>Done</strong> on the warning. (This is what makes the unlock button appear — do the next step right after.)</li>
+        <li>Open <strong>System Settings → Privacy &amp; Security</strong> and find the <strong>Security</strong> section. Just below <strong>"Allow applications from,"</strong> you'll see <em>"eFiling Assistant was blocked…"</em> with an <strong>"Open Anyway"</strong> button — click it and confirm. It opens and stays trusted afterward.</li>
       </ol>
       <div class="callout">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        <div>Still blocked, or it says <em>"damaged"</em>? Open the <strong>Terminal</strong> app, paste this one line, press Return, then open the app:
+        <div>Don't see the "Open Anyway" button, still blocked, or it says <em>"damaged"</em>? Open the <strong>Terminal</strong> app, paste this one line, press Return, then open the app — this always works:
           <code>xattr -dr com.apple.quarantine "/Applications/eFiling Assistant.app"</code></div>
       </div>
     </div>
