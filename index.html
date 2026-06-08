@@ -4,70 +4,510 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>eFiling Assistant — File civil cases the court's way</title>
-<meta name="description" content="A desktop app that helps Philippine law offices comply with the Supreme Court's civil-case eFiling guidelines — Scan, Save, Send, without 'deemed not filed' mistakes." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23141417'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h7'/%3E%3Cpath d='M15.5 4.5a1.8 1.8 0 0 1 2.5 2.5L7.5 17.5l-3.5.9.9-3.5Z'/%3E%3C/g%3E%3C/svg%3E" />
+<meta name="theme-color" content="#070708" />
+<meta name="description" content="A desktop app that makes Philippine Supreme Court eFiling foolproof. Scan, Save, Send — without 'deemed not filed' mistakes. For Windows and Mac." />
+<meta property="og:title" content="eFiling Assistant" />
+<meta property="og:description" content="File civil cases the court's way — Scan, Save, Send, without 'deemed not filed' mistakes." />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-  :root { --canvas:#070709; --card:#141416; --ink:#fafafa; --soft:#9a9aa3; --faint:#6a6a72; --line:rgba(255,255,255,.09); }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--canvas); color:var(--ink); font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
-  header { padding:64px 0 8px; text-align:center; }
-  .mark { width:64px; height:64px; border-radius:16px; display:inline-grid; place-items:center; color:var(--ink);
-    background:linear-gradient(180deg,#202024,#161618); border:1px solid rgba(255,255,255,.10);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 14px 36px -12px rgba(0,0,0,.85); margin-bottom:22px; }
-  h1 { font-size:clamp(1.9rem,1.3rem+2.4vw,2.8rem); font-weight:800; letter-spacing:-.03em; margin:.2rem 0 .5rem; }
-  .lede { color:var(--soft); font-size:1.12rem; max-width:34ch; margin:0 auto; }
-  .eyebrow { text-transform:uppercase; letter-spacing:2px; font-size:.72rem; color:var(--faint); }
-  .cta { display:inline-flex; gap:.55rem; align-items:center; margin-top:30px; padding:.85rem 1.5rem; border-radius:12px;
-    background:var(--ink); color:#0a0a0b; font-weight:600; text-decoration:none; }
-  .cta:hover { background:#e8e8ea; }
-  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:64px 0; }
-  .step { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px; }
-  .step b { display:block; font-size:1.05rem; margin-bottom:6px; }
-  .step span { color:var(--soft); font-size:.92rem; }
-  .num { color:var(--faint); font:600 .8rem/1 monospace; }
-  .feat { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:30px; margin-bottom:64px; }
-  .feat h2 { font-size:1.3rem; margin:0 0 16px; letter-spacing:-.01em; }
-  .feat ul { margin:0; padding-left:1.1rem; color:var(--soft); }
-  .feat li { margin:.5rem 0; }
-  .feat li b { color:var(--ink); font-weight:600; }
-  footer { border-top:1px solid var(--line); padding:32px 0 64px; text-align:center; color:var(--faint); font-size:.86rem; }
-  footer a { color:var(--soft); }
-  @media (max-width:640px){ .steps{ grid-template-columns:1fr; } }
+  :root{
+    --bg:#070708; --bg-2:#0c0c0e; --panel:#101013; --panel-2:#15151a;
+    --ink:#f4f4f5; --ink-2:#a3a3ad; --ink-3:#6c6c78; --ink-4:#46464f;
+    --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12);
+    --accent:#3ddc91; --accent-dim:rgba(61,220,145,.13);
+    --sans:'Satoshi',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* atmosphere: top glow, fine dot-grid, grain */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(900px 500px at 50% -8%, rgba(120,130,160,.16), transparent 70%),
+      radial-gradient(700px 500px at 88% 8%, rgba(61,220,145,.05), transparent 60%),
+      linear-gradient(180deg,#08080a,#060607);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+    background-image:radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px);
+    background-size:34px 34px;
+    -webkit-mask-image:radial-gradient(900px 700px at 50% 0%,#000,transparent 78%);
+    mask-image:radial-gradient(900px 700px at 50% 0%,#000,transparent 78%);
+  }
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;mix-blend-mode:overlay;}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono);font-feature-settings:"ss01";}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+
+  /* ── nav ── */
+  nav{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;transition:.3s}
+  nav.scrolled{background:rgba(8,8,10,.72);backdrop-filter:blur(14px);border-color:var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
+  .brand .mk{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;
+    background:linear-gradient(180deg,#232329,#141417);border:1px solid var(--line-2);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 6px 16px -8px #000}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:14px;color:var(--ink-2);transition:.2s}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;
+    font-size:14px;border-radius:10px;padding:0 18px;height:42px;cursor:pointer;border:1px solid transparent;
+    transition:transform .12s ease,background .2s,border-color .2s,box-shadow .2s;white-space:nowrap}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--ink);color:#0a0a0b;box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 30px -12px rgba(255,255,255,.4)}
+  .btn-primary:hover{background:#fff;box-shadow:0 14px 36px -12px rgba(255,255,255,.5)}
+  .btn-ghost{background:rgba(255,255,255,.03);color:var(--ink);border-color:var(--line-2)}
+  .btn-ghost:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22)}
+  .btn svg{flex:none}
+  .nav-cta{height:38px;padding:0 16px}
+
+  /* ── hero ── */
+  .hero{position:relative;padding:84px 0 40px;text-align:center}
+  .pill{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);
+    background:rgba(255,255,255,.025);border-radius:999px;padding:6px 8px 6px 14px;
+    font-size:12.5px;color:var(--ink-2);margin-bottom:30px}
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim)}
+  .pill .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-3);
+    border-left:1px solid var(--line-2);padding-left:9px}
+  h1{font-size:clamp(2.5rem,1.4rem+4.6vw,4.6rem);line-height:.98;letter-spacing:-.04em;font-weight:900;
+    background:linear-gradient(180deg,#fff 30%,#b9b9c2);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1 .soft{background:linear-gradient(180deg,#8b8b96,#5a5a63);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{max-width:46ch;margin:24px auto 0;color:var(--ink-2);font-size:clamp(1rem,.95rem+.4vw,1.18rem)}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .btn-lg{height:50px;padding:0 22px;font-size:15px;border-radius:12px}
+  .os-note{margin-top:16px;font-size:12.5px;color:var(--ink-3)}
+  .os-note a{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-2)}
+  .os-note a:hover{color:var(--ink)}
+
+  /* staggered reveal */
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}.d5{animation-delay:.42s}.d6{animation-delay:.52s}
+
+  /* ── product card visual ── */
+  .stage{position:relative;margin:64px auto 0;max-width:760px;perspective:1600px}
+  .stage::before{content:"";position:absolute;inset:-12% -6% 0;z-index:-1;
+    background:radial-gradient(60% 60% at 50% 30%,rgba(120,135,170,.22),transparent 70%);filter:blur(20px)}
+  .card{background:linear-gradient(180deg,var(--panel),#0c0c0f);border:1px solid var(--line-2);
+    border-radius:18px;overflow:hidden;box-shadow:0 40px 90px -40px #000,0 2px 0 rgba(255,255,255,.04) inset;
+    text-align:left;animation:float 7s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-9px) rotateX(.6deg)}}
+  @media(prefers-reduced-motion:reduce){.card{animation:none}.reveal{animation:none;opacity:1;transform:none}}
+  .card-bar{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .card-bar .tl{display:flex;gap:7px}.tl i{width:11px;height:11px;border-radius:50%;background:#26262c;display:block}
+  .card-bar .ttl{margin-left:8px;font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+  .card-bar .stamp{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);border:1px solid var(--accent-dim);background:var(--accent-dim);padding:4px 9px;border-radius:6px}
+  .card-body{padding:24px 26px 26px}
+  .case-ttl{font-size:21px;font-weight:700;letter-spacing:-.02em}
+  .docket{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);margin-top:4px}
+  .meta{margin:20px 0 4px;border-top:1px solid var(--line)}
+  .meta .r{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  .meta .k{color:var(--ink-3);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;align-self:center}
+  .meta .v{color:var(--ink);font-weight:600}
+  .att{margin-top:18px}
+  .att .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .att .f{display:flex;align-items:center;gap:11px;padding:7px 0;font-size:13.5px}
+  .att .ck{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;flex:none;
+    background:var(--accent-dim);color:var(--accent)}
+  .att .nm{color:var(--ink)} .att .sz{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+
+  /* ── logos / basis strip ── */
+  .basis{padding:54px 0 8px;text-align:center}
+  .basis p{font-size:12px;color:var(--ink-4);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
+  .basis .row{display:flex;gap:14px 40px;justify-content:center;flex-wrap:wrap;margin-top:20px;color:var(--ink-3);font-size:14px}
+  .basis .row b{color:var(--ink-2);font-weight:600}
+
+  /* ── section scaffolding ── */
+  section.blk{padding:96px 0}
+  .head{max-width:640px;margin-bottom:52px}
+  .head.ctr{margin-left:auto;margin-right:auto;text-align:center}
+  .head h2{font-size:clamp(1.9rem,1.3rem+2vw,2.7rem);letter-spacing:-.03em;line-height:1.05;font-weight:800;margin-top:14px}
+  .head p{color:var(--ink-2);margin-top:14px;font-size:1.05rem}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step{position:relative;background:linear-gradient(180deg,var(--panel),#0b0b0e);border:1px solid var(--line);
+    border-radius:16px;padding:26px 24px 28px;overflow:hidden;transition:.25s}
+  .step:hover{border-color:var(--line-2);transform:translateY(-3px)}
+  .step .n{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+  .step h3{font-size:1.18rem;margin:14px 0 8px;letter-spacing:-.01em}
+  .step p{color:var(--ink-2);font-size:.95rem}
+  .step .ln{position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.4}
+  @media(max-width:820px){.steps{grid-template-columns:1fr}}
+
+  /* features grid */
+  .feat{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .feat .c{background:var(--bg-2);padding:30px 26px;transition:.25s}
+  .feat .c:hover{background:var(--panel)}
+  .feat .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:var(--ink);
+    background:rgba(255,255,255,.04);border:1px solid var(--line-2);margin-bottom:16px}
+  .feat h3{font-size:1.05rem;letter-spacing:-.01em;margin-bottom:7px}
+  .feat p{color:var(--ink-2);font-size:.92rem;line-height:1.55}
+  @media(max-width:900px){.feat{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.feat{grid-template-columns:1fr}}
+
+  /* download */
+  .dl-shell{position:relative;border:1px solid var(--line-2);border-radius:22px;overflow:hidden;
+    background:linear-gradient(180deg,var(--panel),#0a0a0d)}
+  .dl-shell::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(700px 300px at 50% -20%,rgba(61,220,145,.10),transparent 65%)}
+  .dl-in{position:relative;z-index:1;padding:54px 44px}
+  .dl-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+  .dl-top h2{font-size:clamp(1.8rem,1.3rem+1.6vw,2.4rem);letter-spacing:-.03em;font-weight:800}
+  .dl-top p{color:var(--ink-2);margin-top:10px;max-width:42ch}
+  .verbadge{font-family:var(--mono);font-size:12px;color:var(--ink-2);border:1px solid var(--line-2);
+    border-radius:8px;padding:8px 12px;background:rgba(255,255,255,.02);white-space:nowrap}
+  .verbadge b{color:var(--accent)}
+  .dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:680px){.dl-grid{grid-template-columns:1fr}}
+  .dl-card{display:flex;flex-direction:column;gap:14px;border:1px solid var(--line);border-radius:16px;
+    padding:24px;background:var(--bg-2);transition:.25s}
+  .dl-card:hover{border-color:var(--line-2)}
+  .dl-card.is-os{border-color:rgba(61,220,145,.4);box-shadow:0 0 0 1px rgba(61,220,145,.18),0 20px 50px -30px rgba(61,220,145,.5)}
+  .dl-card .osr{display:flex;align-items:center;gap:12px}
+  .dl-card .glyph{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+    background:rgba(255,255,255,.04);border:1px solid var(--line-2);color:var(--ink)}
+  .dl-card .os-name{font-weight:700;font-size:1.05rem}
+  .dl-card .os-sub{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+  .dl-card .youre{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);background:var(--accent-dim);border-radius:6px;padding:4px 8px;display:none}
+  .dl-card.is-os .youre{display:inline-block}
+  .dl-card .alt{font-size:12.5px;color:var(--ink-3)}
+  .dl-card .alt a{color:var(--ink-2);text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--line-2)}
+  .dl-card .alt a:hover{color:var(--ink)}
+  .dl-note{display:flex;gap:12px;align-items:flex-start;margin-top:24px;padding:16px 18px;border-radius:12px;
+    background:rgba(255,255,255,.02);border:1px solid var(--line);font-size:13px;color:var(--ink-2);line-height:1.55}
+  .dl-note svg{flex:none;margin-top:1px;color:var(--ink-3)}
+  .dl-note a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--line-2)}
+  .req{display:flex;gap:10px 28px;flex-wrap:wrap;margin-top:22px;font-family:var(--mono);font-size:11.5px;color:var(--ink-4)}
+  .req b{color:var(--ink-3);font-weight:500}
+
+  /* faq */
+  .faq{display:grid;gap:0;border-top:1px solid var(--line)}
+  details{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer;list-style:none;padding:22px 4px;display:flex;justify-content:space-between;gap:20px;
+    font-weight:600;font-size:1.05rem;letter-spacing:-.01em;transition:.2s}
+  summary::-webkit-details-marker{display:none}
+  summary:hover{color:#fff}
+  summary .pl{font-family:var(--mono);color:var(--ink-3);transition:.3s;flex:none}
+  details[open] summary .pl{transform:rotate(45deg);color:var(--accent)}
+  details .a{padding:0 4px 24px;color:var(--ink-2);max-width:68ch;line-height:1.65}
+  details .a code{font-family:var(--mono);font-size:.85em;background:rgba(255,255,255,.06);padding:2px 7px;border-radius:5px;color:var(--ink)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:56px 0 64px;margin-top:40px}
+  .ft{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+  .ft .col h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);margin-bottom:14px}
+  .ft .col a{display:block;color:var(--ink-2);font-size:14px;padding:5px 0;transition:.2s}
+  .ft .col a:hover{color:var(--ink)}
+  .ft-bottom{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;color:var(--ink-4);font-size:12.5px}
+  .cta-final{text-align:center;padding:30px 0 0}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="mark"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
-    <p class="eyebrow">For Philippine law offices</p>
-    <h1>File civil cases the court's way.</h1>
-    <p class="lede">eFiling Assistant turns the Supreme Court's eFiling rules into one simple, foolproof flow — so a filing never comes back "deemed not filed."</p>
-    <a class="cta" href="mailto:morelos.franzchristian@gmail.com?subject=eFiling%20Assistant%20—%20I'd%20like%20to%20buy">
-      Get eFiling Assistant
+<svg class="grain" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <span class="mk"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+      eFiling Assistant
     </a>
-  </header>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary nav-cta" href="#download">Download</a>
+    </div>
+  </div>
+</nav>
 
+<a id="top"></a>
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="pill reveal d1"><span class="dot"></span> Now with silent auto-update <span class="tag" data-version>v0.1.2</span></div>
+    <h1 class="reveal d2">File civil cases<br><span class="soft">the court's way.</span></h1>
+    <p class="lede reveal d3">The desktop app that turns the Supreme Court's eFiling rules into one foolproof flow — so a filing never comes back <em>"deemed not filed."</em> For Philippine law offices, on Windows and Mac.</p>
+    <div class="cta-row reveal d4">
+      <a class="btn btn-primary btn-lg" data-dl="mac" href="https://github.com/ChanMor/efiling-assistant-site/releases/latest">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 1.5c.1 1-.3 2-.9 2.8-.7.8-1.7 1.4-2.7 1.3-.1-1 .4-2 1-2.7.6-.8 1.7-1.3 2.6-1.4Zm2.7 7.1c-1 .5-1.6 1.5-1.6 2.7 0 1.4.8 2.5 1.9 3-.3.9-.7 1.7-1.3 2.5-.7 1-1.4 1.9-2.5 1.9-1 0-1.4-.6-2.6-.6-1.3 0-1.6.6-2.6.6-1.1 0-1.9-1-2.6-2C5.7 16.6 5 13.6 6.3 11.5c.7-1.1 1.8-1.8 3-1.8 1 0 1.7.7 2.6.7.8 0 1.6-.7 2.7-.7 1 0 2 .4 2.7 1.2-.4.2-.9.5-1.2.7Z"/></svg>
+        Download for macOS
+      </a>
+      <a class="btn btn-ghost btn-lg" data-dl="win" href="https://github.com/ChanMor/efiling-assistant-site/releases/latest">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5V11.5H3V5.5Zm0 13L10.5 19.5V12.5H3v6Zm8.5 1.2L21 21V12.5h-9.5v7.2ZM11.5 4.3 21 3v8.5h-9.5V4.3Z"/></svg>
+        Download for Windows
+      </a>
+    </div>
+    <p class="os-note reveal d5">Free to download · one-time license per office · <a href="#download">all platforms &amp; details ↓</a></p>
+
+    <!-- product preview -->
+    <div class="stage reveal d6">
+      <div class="card">
+        <div class="card-bar">
+          <span class="tl"><i></i><i></i><i></i></span>
+          <span class="ttl">Electronic Case Filing</span>
+          <span class="stamp">✓ Filed</span>
+        </div>
+        <div class="card-body">
+          <div class="case-ttl">Maria dela Cruz v. Juan dela Cruz</div>
+          <div class="docket">Civil Case No. 123456</div>
+          <div class="meta">
+            <div class="r"><span class="k">Manner of filing</span><span class="v">Personal filing</span></div>
+            <div class="r"><span class="k">Filing date</span><span class="v">06/08/2026</span></div>
+            <div class="r"><span class="k">Court e-mail</span><span class="v">mtc.branch1@judiciary.gov.ph</span></div>
+          </div>
+          <div class="att">
+            <div class="lbl">Attachments · court-named</div>
+            <div class="f"><span class="ck"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="nm">Complaint for Unlawful Detainer-Civil Case No. 123456.pdf</span><span class="sz">1.2 MB</span></div>
+            <div class="f"><span class="ck"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="nm">Annex A-Complaint for Unlawful Detainer-Civil Case No. 123456.pdf</span><span class="sz">340 KB</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BASIS -->
+<div class="basis"><div class="wrap">
+  <p>Built on the actual guidelines</p>
+  <div class="row">
+    <span><b>A.M. No. 10-3-7-SC</b> · Submission of Electronic Copies</span>
+    <span><b>Rule 13-A</b> · Interim Rule on Electronic Filing</span>
+    <span><b>11-9-4-SC</b> · Efficient Use of Paper</span>
+  </div>
+</div></div>
+
+<!-- HOW -->
+<section class="blk" id="how"><div class="wrap">
+  <div class="head ctr">
+    <span class="eyebrow">The three S's, automated</span>
+    <h2>Scan. Save. Send. Done right.</h2>
+    <p>The court rejects filings over tiny format mistakes. eFiling Assistant handles the rigid parts so your staff never has to memorize them.</p>
+  </div>
   <div class="steps">
-    <div class="step"><span class="num">01</span><b>Scan</b><span>Add your pleading and annexes — PDFs, or photos/scans the app converts for you.</span></div>
-    <div class="step"><span class="num">02</span><b>Save</b><span>Files are auto-named in the court's exact format. You never type the tricky parts.</span></div>
-    <div class="step"><span class="num">03</span><b>Send</b><span>One click sends the transmittal e-mail from your own Gmail — correct subject, body, and CC.</span></div>
+    <div class="step">
+      <div class="n">01 — SCAN</div>
+      <h3>Add your documents</h3>
+      <p>Drop in your pleading and annexes — PDFs, or photos and scans the app converts to PDF for you, flagging anything the court would reject.</p>
+      <span class="ln"></span>
+    </div>
+    <div class="step">
+      <div class="n">02 — SAVE</div>
+      <h3>Court-perfect filenames</h3>
+      <p>Every file is auto-named in the exact prescribed format — designation, docket number, the works. You never type the fragile parts.</p>
+      <span class="ln"></span>
+    </div>
+    <div class="step">
+      <div class="n">03 — SEND</div>
+      <h3>One click, from your Gmail</h3>
+      <p>The transmittal e-mail goes out with the correct subject, body, and CC — sent from your own e-mail of record, with proof kept in your Sent folder.</p>
+      <span class="ln"></span>
+    </div>
   </div>
+</div></section>
 
+<!-- FEATURES -->
+<section class="blk" id="features" style="padding-top:0"><div class="wrap">
+  <div class="head">
+    <span class="eyebrow">Why offices trust it</span>
+    <h2>Guardrails against<br>"deemed not filed."</h2>
+  </div>
   <div class="feat">
-    <h2>Why offices trust it</h2>
-    <ul>
-      <li><b>Built on the actual guidelines.</b> A.M. No. 10-3-7-SC &amp; the Interim Rule on Electronic Filing (Rule 13-A).</li>
-      <li><b>Catches "deemed not filed" traps</b> before you send — non-PDF, password-protected, archives, corrupted files, missing CC, wrong sender.</li>
-      <li><b>Sends from your own e-mail of record</b> — never a stranger's server. Your documents stay on your computer.</li>
-      <li><b>Keeps your proof</b> — the transmittal lands in your Gmail "Sent," and you can download a record for the case file.</li>
-      <li><b>Works on Windows and Mac.</b> No subscription, no accounts to manage — a one-time license per office.</li>
-    </ul>
+    <div class="c">
+      <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 11 4.6-2.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Catches the traps</h3>
+      <p>Non-PDF, password-protected, archives, corrupted files, missing CC, wrong sender — flagged before you send, not after the court ignores it.</p>
+    </div>
+    <div class="c">
+      <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+      <h3>Your own e-mail of record</h3>
+      <p>Sends from your firm's Gmail — never a stranger's server. It even checks you're signed in as the right account so it isn't "deemed not received."</p>
+    </div>
+    <div class="c">
+      <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+      <h3>Keeps your proof</h3>
+      <p>The transmittal lands in your Gmail "Sent" folder, and you can download a record for the case file — your proof that it went out on time.</p>
+    </div>
+    <div class="c">
+      <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div>
+      <h3>Updates itself</h3>
+      <p>Silent auto-update built in. When the rules change or we ship a fix, every install picks it up on next launch — nothing to re-download.</p>
+    </div>
+    <div class="c">
+      <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+      <h3>Windows &amp; Mac</h3>
+      <p>A real desktop app, not a website. No subscription, no accounts to manage — a one-time license per office, and your documents stay on your computer.</p>
+    </div>
+    <div class="c">
+      <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div>
+      <h3>Nothing leaves your device</h3>
+      <p>All preparation happens locally — no uploads, no cloud. The only thing that travels is the e-mail you choose to send to the court.</p>
+    </div>
   </div>
+</div></section>
 
-  <footer>
-    eFiling Assistant &middot; <a href="./privacy.html">Privacy Policy</a> &middot; <a href="./install.html">Install &amp; Activate</a><br>
-    Not affiliated with or endorsed by the Supreme Court of the Philippines.
-  </footer>
-</div>
+<!-- DOWNLOAD -->
+<section class="blk" id="download" style="padding-top:0"><div class="wrap">
+  <div class="dl-shell"><div class="dl-in">
+    <div class="dl-top">
+      <div>
+        <span class="eyebrow">Download</span>
+        <h2>Get eFiling Assistant</h2>
+        <p>Install on as many office computers as your license covers. The download is free — to sign in, your e-mail just needs to be on your license.</p>
+      </div>
+      <span class="verbadge">Latest · <b data-version>v0.1.2</b></span>
+    </div>
+
+    <div class="dl-grid">
+      <div class="dl-card" data-card="mac">
+        <div class="osr">
+          <span class="glyph"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 1.5c.1 1-.3 2-.9 2.8-.7.8-1.7 1.4-2.7 1.3-.1-1 .4-2 1-2.7.6-.8 1.7-1.3 2.6-1.4Zm2.7 7.1c-1 .5-1.6 1.5-1.6 2.7 0 1.4.8 2.5 1.9 3-.3.9-.7 1.7-1.3 2.5-.7 1-1.4 1.9-2.5 1.9-1 0-1.4-.6-2.6-.6-1.3 0-1.6.6-2.6.6-1.1 0-1.9-1-2.6-2C5.7 16.6 5 13.6 6.3 11.5c.7-1.1 1.8-1.8 3-1.8 1 0 1.7.7 2.6.7.8 0 1.6-.7 2.7-.7 1 0 2 .4 2.7 1.2-.4.2-.9.5-1.2.7Z"/></svg></span>
+          <div><div class="os-name">macOS</div><div class="os-sub">Apple Silicon · .dmg</div></div>
+          <span class="youre">You're on Mac</span>
+        </div>
+        <a class="btn btn-primary" data-dl="mac" href="https://github.com/ChanMor/efiling-assistant-site/releases/latest">Download for Mac</a>
+        <div class="alt">First launch needs a quick unlock — <a href="install.html">see the 15-second steps</a>.</div>
+      </div>
+
+      <div class="dl-card" data-card="win">
+        <div class="osr">
+          <span class="glyph"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5V11.5H3V5.5Zm0 13L10.5 19.5V12.5H3v6Zm8.5 1.2L21 21V12.5h-9.5v7.2ZM11.5 4.3 21 3v8.5h-9.5V4.3Z"/></svg></span>
+          <div><div class="os-name">Windows</div><div class="os-sub">64-bit · .exe installer</div></div>
+          <span class="youre">You're on Windows</span>
+        </div>
+        <a class="btn btn-primary" data-dl="win" href="https://github.com/ChanMor/efiling-assistant-site/releases/latest">Download for Windows</a>
+        <div class="alt">Prefer an MSI? <a data-dl="msi" href="https://github.com/ChanMor/efiling-assistant-site/releases/latest">Download the .msi</a> instead.</div>
+      </div>
+    </div>
+
+    <div class="dl-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>Because it's an independent app, your computer shows a one-time security prompt the first time. It's expected and safe — Windows: <b>“More info → Run anyway.”</b> Mac: <b>System Settings → Privacy &amp; Security → “Open Anyway.”</b> Full steps in the <a href="install.html">install guide</a>.</div>
+    </div>
+
+    <div class="req">
+      <span><b>macOS</b> 11 Big Sur or later (Apple Silicon)</span>
+      <span><b>Windows</b> 10 / 11 (64-bit)</span>
+      <span><b>Sign-in</b> a Google / Gmail account</span>
+    </div>
+  </div></div>
+
+  <div class="cta-final">
+    <a class="btn btn-ghost btn-lg" href="mailto:morelos.franzchristian@gmail.com?subject=eFiling%20Assistant%20—%20license%20request">Request a license →</a>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="blk" id="faq" style="padding-top:0"><div class="wrap">
+  <div class="head"><span class="eyebrow">Questions</span><h2>Good to know</h2></div>
+  <div class="faq">
+    <details open>
+      <summary>How do I get access after downloading? <span class="pl">+</span></summary>
+      <div class="a">The app is free to download, but signing in is tied to your license. After you purchase, your Gmail address is added to your license — then you just open the app and sign in with that account. No keys to paste.</div>
+    </details>
+    <details>
+      <summary>My Mac says the app "can't be opened." Is that normal? <span class="pl">+</span></summary>
+      <div class="a">Yes — it's the standard macOS prompt for an app outside the App Store, and it's a one-time step. Open <b>System Settings → Privacy &amp; Security</b>, scroll down, and click <b>“Open Anyway.”</b> If it still won't open, run this once in Terminal: <code>xattr -dr com.apple.quarantine "/Applications/eFiling Assistant.app"</code>. Full walkthrough in the <a href="install.html">install guide</a>.</div>
+    </details>
+    <details>
+      <summary>Does it upload my clients' documents anywhere? <span class="pl">+</span></summary>
+      <div class="a">No. Everything is prepared on your own computer — no servers, no cloud, no database of your files. The only thing that ever leaves your device is the transmittal e-mail you choose to send to the court, from your own Gmail.</div>
+    </details>
+    <details>
+      <summary>Which cases and courts does it cover? <span class="pl">+</span></summary>
+      <div class="a">Civil cases before the first- and second-level courts, per A.M. No. 10-3-7-SC and the Interim Rule on Electronic Filing (Rule 13-A) — including those under the Rules on Summary Procedure and Small Claims.</div>
+    </details>
+    <details>
+      <summary>Do I need to reinstall to get updates? <span class="pl">+</span></summary>
+      <div class="a">No. eFiling Assistant updates itself silently — it checks on launch and installs the latest signed version automatically, so every office is always current.</div>
+    </details>
+    <details>
+      <summary>How much does it cost? <span class="pl">+</span></summary>
+      <div class="a">A one-time license per office — no subscription. <a href="mailto:morelos.franzchristian@gmail.com?subject=eFiling%20Assistant%20—%20pricing">E-mail for pricing</a> and to get your license set up.</div>
+    </details>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="ft">
+    <div class="col" style="max-width:280px">
+      <a class="brand" href="#top" style="margin-bottom:14px">
+        <span class="mk"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+        eFiling Assistant
+      </a>
+      <p style="color:var(--ink-3);font-size:13.5px;line-height:1.6">File civil cases the court's way — Scan, Save, Send, without "deemed not filed" mistakes.</p>
+    </div>
+    <div class="col"><h4>Product</h4>
+      <a href="#download">Download</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#faq">FAQ</a>
+    </div>
+    <div class="col"><h4>Resources</h4>
+      <a href="install.html">Install &amp; activate</a><a href="privacy.html">Privacy policy</a><a href="https://github.com/ChanMor/efiling-assistant-site/releases">All releases</a>
+    </div>
+    <div class="col"><h4>Contact</h4>
+      <a href="mailto:morelos.franzchristian@gmail.com">Request a license</a><a href="mailto:morelos.franzchristian@gmail.com">Support</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 eFiling Assistant. Built for Philippine law offices.</span>
+    <span>Not affiliated with or endorsed by the Supreme Court of the Philippines.</span>
+  </div>
+</div></footer>
+
+<script>
+  // sticky nav shadow
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>10);
+  onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+  // OS detection → highlight the right download card / hero button
+  const ua=navigator.userAgent, plat=navigator.platform||'';
+  const isMac=/Mac/i.test(plat)||(/Mac/i.test(ua)&&!/iPhone|iPad/i.test(ua));
+  const isWin=/Win/i.test(plat)||/Windows/i.test(ua);
+  if(isMac){document.querySelector('[data-card="mac"]')?.classList.add('is-os');}
+  else if(isWin){document.querySelector('[data-card="win"]')?.classList.add('is-os');}
+  // make the hero's primary button match the detected OS
+  if(isWin){
+    const m=document.querySelector('.cta-row [data-dl="mac"]'), w=document.querySelector('.cta-row [data-dl="win"]');
+    if(m&&w){m.classList.replace('btn-primary','btn-ghost');w.classList.replace('btn-ghost','btn-primary');
+      m.parentNode.insertBefore(w,m);}
+  }
+
+  // live download links from the latest GitHub release (never go stale)
+  const REPO='ChanMor/efiling-assistant-site';
+  const FALLBACK='https://github.com/'+REPO+'/releases/latest';
+  (async()=>{
+    try{
+      const r=await fetch('https://api.github.com/repos/'+REPO+'/releases/latest',{headers:{Accept:'application/vnd.github+json'}});
+      if(!r.ok)throw 0;
+      const rel=await r.json();
+      const url=re=>{const a=(rel.assets||[]).find(a=>re.test(a.name));return a&&a.browser_download_url;};
+      const dmg=url(/\.dmg$/i), exe=url(/-setup\.exe$/i)||url(/\.exe$/i), msi=url(/\.msi$/i);
+      const set=(sel,href)=>{if(href)document.querySelectorAll(sel).forEach(a=>a.href=href);};
+      set('[data-dl="mac"]',dmg);set('[data-dl="win"]',exe);set('[data-dl="msi"]',msi);
+      if(rel.tag_name)document.querySelectorAll('[data-version]').forEach(e=>e.textContent=rel.tag_name);
+    }catch(e){
+      document.querySelectorAll('[data-dl]').forEach(a=>a.href=FALLBACK);
+    }
+  })();
+</script>
 </body>
 </html>
