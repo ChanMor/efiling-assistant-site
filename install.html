@@ -4,59 +4,89 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Install &amp; Activate — eFiling Assistant</title>
-<style>
-  body { margin:0; background:#070709; color:#e9e9ec; font:16px/1.7 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; }
-  .wrap { max-width:760px; margin:0 auto; padding:56px 24px 80px; }
-  h1 { font-size:2rem; letter-spacing:-.02em; margin:0 0 28px; }
-  h2 { font-size:1.2rem; margin:36px 0 10px; }
-  p, li { color:#c6c8cf; }
-  a { color:#fff; }
-  ol { padding-left:1.2rem; } ol li { margin:.5rem 0; }
-  .os { background:#141416; border:1px solid rgba(255,255,255,.09); border-radius:14px; padding:8px 24px 22px; margin:16px 0; }
-  .note { background:rgba(214,161,58,.08); border:1px solid rgba(214,161,58,.25); border-radius:12px; padding:14px 18px; margin:18px 0; color:#e7d3a6; font-size:.95rem; }
-  kbd { background:rgba(255,255,255,.08); border-radius:5px; padding:1px 7px; font-size:.9em; }
-  footer { margin-top:48px; border-top:1px solid rgba(255,255,255,.09); padding-top:20px; color:#6a6a72; font-size:.86rem; }
-</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23141417'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h7'/%3E%3Cpath d='M15.5 4.5a1.8 1.8 0 0 1 2.5 2.5L7.5 17.5l-3.5.9.9-3.5Z'/%3E%3C/g%3E%3C/svg%3E" />
+<meta name="theme-color" content="#070708" />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="style.css" rel="stylesheet" />
 </head>
 <body>
+<svg class="grain" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="mk"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span> eFiling Assistant</a>
+    <div class="nav-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="index.html#faq">FAQ</a>
+      <a class="btn btn-primary nav-cta" href="index.html#download">Download</a>
+    </div>
+  </div>
+</nav>
+
 <div class="wrap">
-  <h1>Install &amp; Activate</h1>
-  <p>It takes about two minutes. You'll need the <strong>installer</strong> and the <strong>license key</strong> from your purchase e-mail.</p>
+  <header class="doc-head">
+    <a class="back" href="index.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Back to home</a>
+    <span class="eyebrow">Getting started</span>
+    <h1>Install &amp; Activate</h1>
+    <p class="sub">About two minutes · Windows &amp; Mac</p>
+  </header>
 
-  <div class="os">
-    <h2>On a Mac</h2>
-    <ol>
-      <li>Open the <strong>.dmg</strong> and drag <strong>eFiling Assistant</strong> into <strong>Applications</strong>.</li>
-      <li>Open it once from Applications. macOS will block it and say it's from an unidentified developer — this is normal for a small independent app and is a <strong>one-time</strong> step.</li>
-      <li>Go to <strong>System Settings → Privacy &amp; Security</strong>, scroll to the bottom, and click <strong>“Open Anyway”</strong>, then confirm. eFiling Assistant opens and stays trusted from then on.</li>
+  <div class="doc">
+    <p>You'll need two things from your purchase e-mail: the <strong>installer</strong> for your computer, and the <strong>Gmail address</strong> your license is registered to.</p>
+
+    <!-- WINDOWS -->
+    <div class="os-card">
+      <div class="h">
+        <span class="glyph"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5V11.5H3V5.5Zm0 13L10.5 19.5V12.5H3v6Zm8.5 1.2L21 21V12.5h-9.5v7.2ZM11.5 4.3 21 3v8.5h-9.5V4.3Z"/></svg></span>
+        <h2>On Windows</h2>
+      </div>
+      <ol class="steps-ol">
+        <li>Run the installer (<strong>.exe</strong> or <strong>.msi</strong>).</li>
+        <li>If you see a blue <strong>"Windows protected your PC"</strong> box, click <strong>"More info" → "Run anyway."</strong> This is normal for a new app and stops once it builds reputation.</li>
+        <li>Finish installing and open <strong>eFiling Assistant</strong> from the Start menu.</li>
+      </ol>
+    </div>
+
+    <!-- MAC -->
+    <div class="os-card">
+      <div class="h">
+        <span class="glyph"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 1.5c.1 1-.3 2-.9 2.8-.7.8-1.7 1.4-2.7 1.3-.1-1 .4-2 1-2.7.6-.8 1.7-1.3 2.6-1.4Zm2.7 7.1c-1 .5-1.6 1.5-1.6 2.7 0 1.4.8 2.5 1.9 3-.3.9-.7 1.7-1.3 2.5-.7 1-1.4 1.9-2.5 1.9-1 0-1.4-.6-2.6-.6-1.3 0-1.6.6-2.6.6-1.1 0-1.9-1-2.6-2C5.7 16.6 5 13.6 6.3 11.5c.7-1.1 1.8-1.8 3-1.8 1 0 1.7.7 2.6.7.8 0 1.6-.7 2.7-.7 1 0 2 .4 2.7 1.2-.4.2-.9.5-1.2.7Z"/></svg></span>
+        <h2>On a Mac</h2>
+      </div>
+      <ol class="steps-ol">
+        <li>Open the <strong>.dmg</strong> and drag <strong>eFiling Assistant</strong> into <strong>Applications</strong>.</li>
+        <li>Open it once from Applications. macOS will block it (unidentified developer) — normal for a small independent app, and a <strong>one-time</strong> step.</li>
+        <li>Go to <strong>System Settings → Privacy &amp; Security</strong>, scroll to the bottom, and click <strong>"Open Anyway"</strong>, then confirm. It opens and stays trusted afterward.</li>
+      </ol>
+      <div class="callout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>Still blocked, or it says <em>"damaged"</em>? Open the <strong>Terminal</strong> app, paste this one line, press Return, then open the app:
+          <code>xattr -dr com.apple.quarantine "/Applications/eFiling Assistant.app"</code></div>
+      </div>
+    </div>
+
+    <h2>Sign in</h2>
+    <ol class="steps-ol" style="margin-top:14px">
+      <li>Click <strong>Continue with Google</strong> and sign in with the <strong>Gmail address you bought eFiling Assistant under</strong> — this should be the professional e-mail of record you file from. Your access is tied to this address.</li>
+      <li>The first time, Google may say <em>"Google hasn't verified this app."</em> Click <strong>Advanced → "Go to eFiling Assistant"</strong>, then allow it to <strong>send e-mail on your behalf</strong>. The app can only <em>send</em> — it can never read your inbox.</li>
+      <li>That's it — you're in, and you won't have to sign in again on this computer.</li>
     </ol>
-    <div class="note">Still blocked, or it says <em>“damaged”</em>? Open the <strong>Terminal</strong> app and paste this one line, then press Return — it clears Apple's download flag:<br>
-      <code style="display:inline-block;margin-top:8px;background:rgba(255,255,255,.07);padding:6px 10px;border-radius:6px;color:#e9e9ec;">xattr -dr com.apple.quarantine "/Applications/eFiling Assistant.app"</code><br>
-      Then open the app normally. You only ever do this once.</div>
+    <p style="margin-top:18px;color:var(--ink-3);font-size:14px">Sign in with the exact address you purchased under. Need to use a different e-mail, or lost access? <a href="mailto:morelos.franzchristian@gmail.com">E-mail us</a> and we'll sort it out.</p>
   </div>
-
-  <div class="os">
-    <h2>On Windows</h2>
-    <ol>
-      <li>Run the installer (<strong>.exe</strong> or <strong>.msi</strong>).</li>
-      <li>If Windows shows a blue <strong>"Windows protected your PC"</strong> box, click <strong>"More info" → "Run anyway"</strong>. This is normal for a new app and only happens until it builds reputation.</li>
-      <li>Finish the installer and open <strong>eFiling Assistant</strong> from the Start menu.</li>
-    </ol>
-  </div>
-
-  <h2>Sign in</h2>
-  <ol>
-    <li>Click <strong>Continue with Google</strong> and sign in with the <strong>Gmail address you bought eFiling Assistant under</strong> — this should be the professional e-mail of record you file from. Your access is tied to this address.</li>
-    <li>The first time, Google may say <em>"Google hasn't verified this app."</em> Click <strong>Advanced → "Go to eFiling Assistant"</strong>, then allow it to <strong>send e-mail on your behalf</strong>. (The app can only <em>send</em> — it can't read your inbox.)</li>
-    <li>That's it — you're in. You won't have to sign in again.</li>
-  </ol>
-
-  <div class="note">Sign in with the exact address you purchased under. Need to use a different e-mail? Just let us know and we'll switch it.</div>
-
-  <h2>Need help?</h2>
-  <p>E-mail <a href="mailto:morelos.franzchristian@gmail.com">morelos.franzchristian@gmail.com</a> and we'll sort it out.</p>
-
-  <footer>eFiling Assistant is an independent tool and is not affiliated with or endorsed by the Supreme Court of the Philippines.</footer>
 </div>
+
+<footer><div class="ft-in">
+  <span>© 2026 eFiling Assistant · Not affiliated with the Supreme Court of the Philippines.</span>
+  <span class="ft-links"><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="mailto:morelos.franzchristian@gmail.com">Contact</a></span>
+</div></footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  const f=()=>nav.classList.toggle('scrolled',scrollY>10);f();addEventListener('scroll',f,{passive:true});
+</script>
 </body>
 </html>
