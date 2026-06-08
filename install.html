@@ -26,10 +26,13 @@
   <div class="os">
     <h2>On a Mac</h2>
     <ol>
-      <li>Open the <strong>.dmg</strong> and drag <strong>eFiling Assistant</strong> into Applications.</li>
-      <li>The first time, macOS may say it "cannot be opened because Apple cannot check it." This is normal for a small app. <strong>Right-click (or Control-click) the app icon → Open → Open.</strong> You only do this once.</li>
-      <li>If you don't see "Open", go to <strong>System Settings → Privacy &amp; Security</strong>, scroll down, and click <strong>"Open Anyway"</strong>.</li>
+      <li>Open the <strong>.dmg</strong> and drag <strong>eFiling Assistant</strong> into <strong>Applications</strong>.</li>
+      <li>Open it once from Applications. macOS will block it and say it's from an unidentified developer — this is normal for a small independent app and is a <strong>one-time</strong> step.</li>
+      <li>Go to <strong>System Settings → Privacy &amp; Security</strong>, scroll to the bottom, and click <strong>“Open Anyway”</strong>, then confirm. eFiling Assistant opens and stays trusted from then on.</li>
     </ol>
+    <div class="note">Still blocked, or it says <em>“damaged”</em>? Open the <strong>Terminal</strong> app and paste this one line, then press Return — it clears Apple's download flag:<br>
+      <code style="display:inline-block;margin-top:8px;background:rgba(255,255,255,.07);padding:6px 10px;border-radius:6px;color:#e9e9ec;">xattr -dr com.apple.quarantine "/Applications/eFiling Assistant.app"</code><br>
+      Then open the app normally. You only ever do this once.</div>
   </div>
 
   <div class="os">
