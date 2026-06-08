@@ -20,6 +20,8 @@
   <div class="nav-in">
     <a class="brand" href="index.html"><span class="mk"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span> eFiling Assistant</a>
     <div class="nav-links">
+      <a href="index.html#how">How it works</a>
+      <a href="install.html">Install guide</a>
       <a href="privacy.html">Privacy</a>
       <a href="index.html#faq">FAQ</a>
       <a class="btn btn-primary nav-cta" href="index.html#download">Download</a>
@@ -49,6 +51,11 @@
         <li>If you see a blue <strong>"Windows protected your PC"</strong> box, click <strong>"More info" → "Run anyway."</strong> This is normal for a new app and stops once it builds reputation.</li>
         <li>Finish installing and open <strong>eFiling Assistant</strong> from the Start menu.</li>
       </ol>
+      <div class="callout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>Want to skip the warning entirely? Right-click the installer → <strong>Properties</strong> → tick <strong>“Unblock”</strong> at the bottom → OK. Or in <strong>PowerShell</strong>:
+          <code>Get-ChildItem "$env:USERPROFILE\Downloads\eFiling*Assistant*" | Unblock-File</code></div>
+      </div>
     </div>
 
     <!-- MAC -->
