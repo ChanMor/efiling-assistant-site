@@ -34,7 +34,7 @@
     <a class="back" href="index.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Back to home</a>
     <span class="eyebrow">Legal</span>
     <h1>Privacy Policy</h1>
-    <p class="sub">eFiling Assistant · Last updated 8 June 2026</p>
+    <p class="sub">eFiling Assistant · Last updated 15 June 2026</p>
   </header>
 
   <div class="doc">
@@ -67,7 +67,19 @@
     <h2>4. Where data is stored</h2>
     <p>Everything is local to your device: your firm signature, app settings, and your Google sign-in. On desktop, your Google sign-in is stored as an <strong>encrypted token</strong> in the app's private data folder so you don't have to sign in repeatedly; it's encrypted with a key derived from your machine and cannot be used on another computer. You can remove it anytime by signing out in the app or uninstalling.</p>
 
-    <h2>5. Google API Services — Limited Use</h2>
+    <h2>5. How we protect your data</h2>
+    <p>We apply security measures to protect the limited information the app handles, and especially the sensitive Google data (your <code>gmail.send</code> access and sign-in):</p>
+    <ul>
+      <li><strong>Encryption in transit:</strong> all communication with Google (signing in and sending mail) is over HTTPS/TLS, so your information is encrypted on the network.</li>
+      <li><strong>Encryption at rest:</strong> on desktop, your Google sign-in (the refresh token) is stored using strong authenticated encryption (XChaCha20-Poly1305) in the app's private data folder, with a key bound to your device, so the stored credential cannot be used if copied to another computer. The short-lived access token is held only in memory during a session.</li>
+      <li><strong>No servers, no central store:</strong> we operate no back-end servers and keep no database of users, tokens, documents, or message content. Your documents and case data never leave your device except as the e-mail you choose to send, which is delivered directly from your device to Google.</li>
+      <li><strong>Least privilege:</strong> the app requests only the send-only <code>gmail.send</code> scope plus your basic profile — it cannot read, list, modify, or delete any mail in your mailbox.</li>
+      <li><strong>Access control:</strong> sign-in to the app is limited to authorized, licensed users.</li>
+      <li><strong>Integrity:</strong> the app is kept current through cryptographically signed, verified automatic updates.</li>
+    </ul>
+    <p>Security procedures are in place to protect the confidentiality of your data. No method of electronic storage or transmission is 100% secure, but we use the safeguards above to protect your information.</p>
+
+    <h2>6. Google API Services — Limited Use</h2>
     <p>eFiling Assistant's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the <strong>Limited Use</strong> requirements. Specifically, the data obtained through Google sign-in (your basic profile and the <code>gmail.send</code> permission):</p>
     <ul>
       <li>is used <strong>only</strong> to provide and improve the app's single user-facing feature — composing and sending your civil-case filing e-mail from your own account, at your request;</li>
@@ -76,16 +88,16 @@
       <li>is <strong>not</strong> read by, or made accessible to, any humans, unless we have your affirmative consent for specific messages, it is necessary for security purposes (e.g. investigating abuse), or to comply with applicable law.</li>
     </ul>
 
-    <h2>6. Data deletion</h2>
+    <h2>7. Data deletion</h2>
     <p>Because no data leaves your device, you control all of it. To delete it: sign out in the app (removes the stored Google token), or uninstall the app. You may also revoke the app's access to your Google account anytime at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
 
-    <h2>7. Children</h2>
+    <h2>8. Children</h2>
     <p>The app is a professional tool for legal practitioners and is not directed to children.</p>
 
-    <h2>8. Changes</h2>
+    <h2>9. Changes</h2>
     <p>If this policy changes, the "Last updated" date above will change. Material changes will be communicated to licensed users.</p>
 
-    <h2>9. Contact</h2>
+    <h2>10. Contact</h2>
     <p>Questions about this policy or your data: <a href="mailto:morelos.franzchristian@gmail.com">morelos.franzchristian@gmail.com</a>.</p>
   </div>
 </div>
